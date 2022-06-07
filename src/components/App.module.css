@@ -2,32 +2,9 @@
   font-size: 42px;
   text-align: start;
 }
-.maincontainer{
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  border: 1px solid grey;
-  padding: 20px;
-}
-.mainform{
-  display: flex;
-  flex-direction: column;
-}
-.mainlabel{
-  padding-bottom: 15px;
-}
-.mainInput{
-  width: 220px;
-  font-size: 20px;
-  border: 3px solid blue;
-  margin-bottom: 15px;
-}
-.contactTitle{
+.contactTitle {
   font-size: 36px;
 }
-.submitBtn{
-  width: 100px;
-}
-.contactListItem{
-  font-size: 26px ;
-}
+
+
+
