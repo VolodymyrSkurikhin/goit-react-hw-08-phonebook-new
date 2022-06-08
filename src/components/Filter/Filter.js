@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
 export const Filter = ({ value, handleFilter }) => (
@@ -14,3 +15,8 @@ export const Filter = ({ value, handleFilter }) => (
     />
   </label>
 );
+
+Filter.propTypes = {
+  value: PropTypes.string,
+  handleFilter: PropTypes.func,
+};

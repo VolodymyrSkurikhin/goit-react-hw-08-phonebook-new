@@ -8,10 +8,10 @@ import s from './App.module.css';
 class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      { id: '1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: '2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: '3', name: 'Eden Clements', number: '645-17-79' },
+      { id: '4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
   };
@@ -33,8 +33,14 @@ class App extends Component {
       cont.name.toLowerCase().includes(filterLowered)
     );
   }
+  onDelete = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(item => item.id !== id),
+    }));
+  };
 
   render() {
+    console.log(this.state);
     return (
       <div
         style={{
@@ -52,7 +58,10 @@ class App extends Component {
         <ContactForm onSubmit={this.handleAppSubmit} />
         <h2 className={s.contactTitle}>Contacts</h2>
         <Filter value={this.state.filter} handleFilter={this.handleFilter} />
-        <ContactList visibleContacts={this.renderContactList()} />
+        <ContactList
+          visibleContacts={this.renderContactList()}
+          deleteHandle={this.onDelete}
+        />
       </div>
     );
   }
