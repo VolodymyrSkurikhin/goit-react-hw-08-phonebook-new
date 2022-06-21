@@ -11,14 +11,9 @@ function App() {
     if (parsedContacts) {
       return parsedContacts;
     }
+    return [];
   });
   const [filter, setFilter] = useState('');
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.contacts !== prevState.contacts) {
-  //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-  //   }
-  // }
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
