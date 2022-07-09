@@ -1,10 +1,15 @@
-import {
-  createReducer,
-  combineReducers,
-} from '@reduxjs/toolkit/dist/createReducer';
-import { addContact, deleteContact, changeFilter } from './store';
+import { createReducer, combineReducers } from '@reduxjs/toolkit';
+import { addContact, deleteContact, changeFilter } from './action';
 
-const items = createReducer([], {
+function initialState() {
+  const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+  if (parsedContacts) {
+    return parsedContacts;
+  }
+  return [];
+}
+
+const items = createReducer(initialState(), {
   [addContact]: (state, { payload }) => [...state, payload],
   [deleteContact]: (state, { payload }) =>
     state.filter(item => item.id !== payload),

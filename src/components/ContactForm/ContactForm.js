@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'Redux/action';
 import PropTypes from 'prop-types';
 import s from './ContactForm.module.css';
 
-function ContactForm({ onSubmit }) {
+function ContactForm() {
   // state = {
   //   name: '',
   //   number: '',
   // };
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(state => state.contacts.items);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   // handleNameInput = e => {
   //   this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   // };
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   const data = { name, number };
+  //   onSubmit(data);
+  //   setName('');
+  //   setNumber('');
+  // };
+
   const handleSubmit = e => {
     e.preventDefault();
-    const data = { name, number };
-    onSubmit(data);
+    // const data = { name, number };
+    contacts.find(cont => cont.name === name)
+      ? alert(`${name} is already in contacts`)
+      : dispatch(addContact(name, number));
     setName('');
     setNumber('');
   };

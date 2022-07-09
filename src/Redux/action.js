@@ -1,4 +1,4 @@
-import { createAction } from '@reduxjs/toolkit/dist/createAction';
+import { createAction } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 
 export const addContact = createAction('contact/Add', (name, number) => ({
