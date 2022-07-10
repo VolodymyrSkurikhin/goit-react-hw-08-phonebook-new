@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from '../../Redux/action';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 
 export const ContactList = () => {
@@ -36,9 +36,9 @@ export const ContactList = () => {
     </ul>
   );
 };
-ContactList.propTypes = {
-  visibleContacts: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.string.isRequired })
-  ),
-  deleteHandle: PropTypes.func,
-};
+// ContactList.propTypes = {
+//   visibleContacts: PropTypes.arrayOf(
+//     PropTypes.shape({ id: PropTypes.string.isRequired })
+//   ),
+//   deleteHandle: PropTypes.func,
+// };

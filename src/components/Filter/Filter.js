@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeFilter } from '../../Redux/action';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
 export const Filter = () => {
@@ -23,7 +23,7 @@ export const Filter = () => {
   );
 };
 
-Filter.propTypes = {
-  value: PropTypes.string,
-  handleFilter: PropTypes.func,
-};
+// Filter.propTypes = {
+//   value: PropTypes.string,
+//   handleFilter: PropTypes.func,
+// };
