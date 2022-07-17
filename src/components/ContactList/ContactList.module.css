@@ -1,4 +1,7 @@
 .contactListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 26px;
 }
 .deleteBtn{
@@ -9,3 +12,7 @@
   border: none;
   margin-left: 20px;
 }
+.dateInfo{
+  font-size:16px ;
+}
+

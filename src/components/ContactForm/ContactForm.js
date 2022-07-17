@@ -1,29 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'Redux/action';
+import { getContactItems } from '../../Redux/selectors';
+import { Loader } from '../Loader/loader';
+import { post } from '../../Redux/thunk';
 // import PropTypes from 'prop-types';
 import s from './ContactForm.module.css';
 
 function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(getContactItems);
   const dispatch = useDispatch();
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
+  // useEffect(() => {
+  //   dispatch(fetch());
+  // }, [dispatch]);
 
   const handleSubmit = e => {
     e.preventDefault();
     contacts.find(cont => cont.name === name)
       ? alert(`${name} is already in contacts`)
-      : dispatch(addContact(name, number));
+      : dispatch(
+          post({ createdAt: () => new Date().toISOString(), name, number })
+        );
     setName('');
     setNumber('');
   };
 
   return (
     <div className={s.maincontainer}>
+      <Loader />
       <form className={s.mainform} onSubmit={handleSubmit}>
         <label htmlFor="inpname" className={s.mainlabel}>
           Name{' '}
