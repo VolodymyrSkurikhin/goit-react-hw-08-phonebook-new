@@ -1,0 +1,19 @@
+.notActive {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  font-family: cursive;
+  font-size: 18px;
+  color: dimgrey;
+}
+
+.active {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  font-family: cursive;
+  font-size: 18px;
+  color: brown;
+}
