@@ -1,5 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchContacts, deleteContact, postContact } from '../service';
+import {
+  fetchContacts,
+  deleteContact,
+  postContact,
+  postRegister,
+  postLogin,
+  postLogout,
+} from '../service';
 
 export const fetch = createAsyncThunk(
   'contacts/fetchContacts',
@@ -27,6 +34,36 @@ export const deleteThunk = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       return await deleteContact(id);
+    } catch (_) {
+      return rejectWithValue('Sorry, try later...');
+    }
+  }
+);
+export const register = createAsyncThunk(
+  'auth/register',
+  async (creds, { rejectWithValue }) => {
+    try {
+      return await postRegister(creds);
+    } catch (_) {
+      return rejectWithValue('Sorry, try later...');
+    }
+  }
+);
+export const login = createAsyncThunk(
+  'auth/login',
+  async (creds, { rejectWithValue }) => {
+    try {
+      return await postLogin(creds);
+    } catch (_) {
+      return rejectWithValue('Sorry, try later...');
+    }
+  }
+);
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await postLogout();
     } catch (_) {
       return rejectWithValue('Sorry, try later...');
     }

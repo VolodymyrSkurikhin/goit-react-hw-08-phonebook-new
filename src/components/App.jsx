@@ -8,13 +8,16 @@ import { Navigation } from './Navigation/Navigation';
 // import { Filter } from './Filter/Filter';
 // import { ContactList } from './ContactList/ContactList';
 import s from './App.module.css';
-import { Register } from 'Pages/Register/Register';
+import { RegisterView } from 'Pages/RegisterView/RegisterView';
+import { LoginView } from 'Pages/LoginView/LoginView';
+import { UserMenu } from './UserMenu/UserMenu';
 // import { lazy, Suspense } from 'react';
 
 const ContactsView = lazy(() => import('Pages/ContactsView/ContactsView'));
 
 function App() {
   const errorMessage = useSelector(state => state.contacts.error);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   return (
     <div
       style={{
@@ -31,10 +34,11 @@ function App() {
     >
       {errorMessage && <h1 className={s.title}>{errorMessage}</h1>}
       <h1 className={s.title}>Phonebook</h1>
-      <Navigation />
+      {!isLoggedIn ? <Navigation /> : <UserMenu />}
       <Suspense fallback={<h3>Loading...</h3>}>
         <Routes>
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<RegisterView />} />
+          <Route path="/login" element={<LoginView />} />
           <Route path="/contacts" element={<ContactsView />} />
         </Routes>
       </Suspense>

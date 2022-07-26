@@ -1,6 +1,6 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import { changeFilter } from './action';
-import { fetch, post, deleteThunk } from './thunk';
+import { fetch, post, deleteThunk, register, login } from './thunk';
 
 // function initialState() {
 //   const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
@@ -9,6 +9,22 @@ import { fetch, post, deleteThunk } from './thunk';
 //   }
 //   return [];
 // }
+
+const user = createReducer(
+  { name: '', email: '' },
+  {
+    [register.fulfilled]: (_, { payload }) => payload.user,
+    [login.fulfilled]: (_, { payload }) => payload.user,
+  }
+);
+const token = createReducer(null, {
+  [register.fulfilled]: (_, { payload }) => payload.token,
+  [login.fulfilled]: (_, { payload }) => payload.token,
+});
+const isLoggedIn = createReducer(false, {
+  [register.fulfilled]: () => true,
+  [login.fulfilled]: () => true,
+});
 
 const items = createReducer([], {
   [fetch.fulfilled]: (_, { payload }) => payload,
@@ -38,7 +54,13 @@ const isLoading = createReducer(false, {
 const filter = createReducer('', {
   [changeFilter]: (_, { payload }) => payload,
 });
-export const rootReducer = combineReducers({
+
+export const authReducer = combineReducers({
+  user,
+  token,
+  isLoggedIn,
+});
+export const contactsReducer = combineReducers({
   items,
   isLoading,
   error,

@@ -2,21 +2,27 @@ import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { Loader } from 'components/Loader/loader';
-import s from './Register.module.css';
+import { login } from 'Redux/thunk';
+import s from '../RegisterView/RegisterView.module.css';
 // import { Button } from '@mui/material';
 
-export function Register() {
-  const [name, setName] = useState('');
+export function LoginView() {
+  // const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const handleSubmit = e => {};
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(login({ email, password }));
+    setEmail('');
+    setPassword('');
+  };
   return (
     <div className={s.maincontainer}>
       <Loader />
       {/* // <div className={s.container}> */}
       <form className={s.mainform} onSubmit={handleSubmit}>
-        <TextField
+        {/* <TextField
           value={name}
           onChange={e => setName(e.currentTarget.value)}
           className={s.input}
@@ -28,10 +34,10 @@ export function Register() {
           name="name"
           autoComplete="current-name"
           // helperText="Incorrect value"
-        />
+        /> */}
         <TextField
           value={email}
-          onChange={e => setName(e.currentTarget.value)}
+          onChange={e => setEmail(e.currentTarget.value)}
           className={s.input}
           required
           // error
@@ -44,7 +50,7 @@ export function Register() {
         />
         <TextField
           value={password}
-          onChange={e => setName(e.currentTarget.value)}
+          onChange={e => setPassword(e.currentTarget.value)}
           className={s.input}
           required
           // error
@@ -55,7 +61,7 @@ export function Register() {
           autoComplete="current-password"
           // helperText="Incorrect value"
         />
-        <Button className={s.button} variant="contained">
+        <Button type="submit" className={s.button} variant="contained">
           Submit
         </Button>
       </form>
