@@ -1,7 +1,7 @@
 .container{
   position: absolute;
-  top:20%;
-  right: 20%;
+  top:10%;
+  right: 10%;
   display:flex;
   flex-direction: column;
   align-items: center;

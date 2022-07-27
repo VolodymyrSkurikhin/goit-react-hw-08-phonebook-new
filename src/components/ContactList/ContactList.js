@@ -24,10 +24,10 @@ export const ContactList = () => {
           <li className={s.contactListItem} key={item.id}>
             &#9743;&#160;
             {item.name}: {item.number}
-            <span className={s.dateInfo}>
+            {/* <span className={s.dateInfo}>
               Created:&#160;
               {new Date(item.createdAt).toLocaleString()}
-            </span>
+            </span> */}
             <button
               type="button"
               className={s.deleteBtn}

@@ -27,3 +27,8 @@ export async function postLogout() {
   await axios.post(`/users/logout`);
   axios.defaults.headers.common['Authorization'] = '';
 }
+export async function getCurrentUser(token) {
+  axios.defaults.headers.common['Authorization'] = `${token}`;
+  const response = await axios.get(`/users/current`);
+  return response.data;
+}

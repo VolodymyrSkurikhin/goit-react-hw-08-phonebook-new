@@ -23,7 +23,8 @@ function ContactForm() {
     contacts.find(cont => cont.name === name)
       ? alert(`${name} is already in contacts`)
       : dispatch(
-          post({ createdAt: () => new Date().toISOString(), name, number })
+          // post({ createdAt: () => new Date().toISOString(), name, number })
+          post({ name, number })
         );
     setName('');
     setNumber('');

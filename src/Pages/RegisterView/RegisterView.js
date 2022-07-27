@@ -6,7 +6,7 @@ import s from './RegisterView.module.css';
 import { register } from 'Redux/thunk';
 // import { Button } from '@mui/material';
 
-export function RegisterView() {
+function RegisterView() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -69,3 +69,5 @@ export function RegisterView() {
     </div>
   );
 }
+
+export default RegisterView;

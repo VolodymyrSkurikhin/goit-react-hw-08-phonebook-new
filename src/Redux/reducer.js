@@ -1,6 +1,14 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import { changeFilter } from './action';
-import { fetch, post, deleteThunk, register, login } from './thunk';
+import {
+  fetch,
+  post,
+  deleteThunk,
+  register,
+  login,
+  logout,
+  getCurrentUserThunk,
+} from './thunk';
 
 // function initialState() {
 //   const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
@@ -15,15 +23,20 @@ const user = createReducer(
   {
     [register.fulfilled]: (_, { payload }) => payload.user,
     [login.fulfilled]: (_, { payload }) => payload.user,
+    [logout.fulfilled]: () => null,
+    [getCurrentUserThunk.fulfilled]: (_, { payload }) => payload.user,
   }
 );
 const token = createReducer(null, {
   [register.fulfilled]: (_, { payload }) => payload.token,
   [login.fulfilled]: (_, { payload }) => payload.token,
+  [logout.fulfilled]: () => null,
 });
 const isLoggedIn = createReducer(false, {
   [register.fulfilled]: () => true,
   [login.fulfilled]: () => true,
+  [logout.fulfilled]: () => false,
+  [getCurrentUserThunk.fulfilled]: () => true,
 });
 
 const items = createReducer([], {

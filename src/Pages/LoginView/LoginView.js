@@ -6,7 +6,7 @@ import { login } from 'Redux/thunk';
 import s from '../RegisterView/RegisterView.module.css';
 // import { Button } from '@mui/material';
 
-export function LoginView() {
+function LoginView() {
   // const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -68,3 +68,5 @@ export function LoginView() {
     </div>
   );
 }
+
+export default LoginView;

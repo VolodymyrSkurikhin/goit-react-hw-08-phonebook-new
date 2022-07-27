@@ -6,6 +6,7 @@ import {
   postRegister,
   postLogin,
   postLogout,
+  getCurrentUser,
 } from '../service';
 
 export const fetch = createAsyncThunk(
@@ -64,6 +65,21 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       return await postLogout();
+    } catch (_) {
+      return rejectWithValue('Sorry, try later...');
+    }
+  }
+);
+export const getCurrentUserThunk = createAsyncThunk(
+  'auth/getUser',
+  async (_, { getState, rejectWithValue }) => {
+    const token = getState().auth.token;
+    if (!token) {
+      return rejectWithValue('No user logged in...');
+      // return (token = '');
+    }
+    try {
+      return await getCurrentUser(token);
     } catch (_) {
       return rejectWithValue('Sorry, try later...');
     }

@@ -5,7 +5,7 @@ import { ContactList } from 'components/ContactList/ContactList';
 // import { UserMenu } from 'components/UserMenu/UserMenu';
 import s from './ContactsView.module.css';
 
-export function ContactsView() {
+function ContactsView() {
   return (
     <>
       {/* <UserMenu /> */}
@@ -16,3 +16,5 @@ export function ContactsView() {
     </>
   );
 }
+
+export default ContactsView;

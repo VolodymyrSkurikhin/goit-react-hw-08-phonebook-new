@@ -7,7 +7,7 @@ import { logout } from 'Redux/thunk';
 export function UserMenu() {
   const email = useSelector(state => state.auth.user.email);
   const dispatch = useDispatch();
-  const handleLogout = () => dispatch(logout);
+  const handleLogout = () => dispatch(logout());
   return (
     <div className={s.container}>
       <TextField
