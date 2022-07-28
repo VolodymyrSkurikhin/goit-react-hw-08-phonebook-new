@@ -4,7 +4,8 @@ import { Route, Navigate } from 'react-router-dom';
 
 export default function PublicRoute({ children, ...routeProps }) {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  <Route {...routeProps}>
-    {isLoggedIn ? <Navigate to={{ ...routeProps }} /> : children}
-  </Route>;
+  <Route
+    {...routeProps}
+    element={isLoggedIn ? <Navigate to={{ ...routeProps }} /> : children}
+  />;
 }

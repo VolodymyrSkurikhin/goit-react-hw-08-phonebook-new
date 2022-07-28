@@ -8,7 +8,6 @@ import s from './ContactsView.module.css';
 function ContactsView() {
   return (
     <>
-      {/* <UserMenu /> */}
       <ContactForm />
       <h2 className={s.contactTitle}>Contacts</h2>
       <Filter />

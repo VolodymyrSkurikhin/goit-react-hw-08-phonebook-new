@@ -3,9 +3,10 @@ import { TextField, Button } from '@mui/material';
 import s from './UserMenu.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'Redux/thunk';
+import { emailSelector } from 'Redux/selectors';
 
 export function UserMenu() {
-  const email = useSelector(state => state.auth.user.email);
+  const email = useSelector(emailSelector);
   const dispatch = useDispatch();
   const handleLogout = () => dispatch(logout());
   return (

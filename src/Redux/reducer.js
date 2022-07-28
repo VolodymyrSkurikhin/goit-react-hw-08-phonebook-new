@@ -38,20 +38,29 @@ const isLoggedIn = createReducer(false, {
   [logout.fulfilled]: () => false,
   [getCurrentUserThunk.fulfilled]: () => true,
 });
+const isReloading = createReducer(true, {
+  [getCurrentUserThunk.pending]: () => true,
+  [getCurrentUserThunk.fulfilled]: () => false,
+  [getCurrentUserThunk.rejected]: () => false,
+});
 
 const items = createReducer([], {
   [fetch.fulfilled]: (_, { payload }) => payload,
   [post.fulfilled]: (state, { payload }) => [...state, payload],
   [deleteThunk.fulfilled]: (state, { payload }) =>
-    state.filter(item => item.id !== payload.id),
+    state.filter(item => item.id !== payload),
 });
-const error = createReducer(null, {
+export const errorReducer = createReducer(null, {
   [fetch.rejected]: (_, { payload }) => payload,
   [post.rejected]: (_, { payload }) => payload,
   [deleteThunk.rejected]: (_, { payload }) => payload,
   [fetch.pending]: () => null,
   [post.pending]: () => null,
   [deleteThunk.pending]: () => null,
+  [register.rejected]: (_, { payload }) => payload,
+  [login.rejected]: (_, { payload }) => payload,
+  [logout.rejected]: (_, { payload }) => payload,
+  [getCurrentUserThunk.rejected]: (_, { payload }) => payload,
 });
 const isLoading = createReducer(false, {
   [fetch.pending]: () => true,
@@ -72,10 +81,11 @@ export const authReducer = combineReducers({
   user,
   token,
   isLoggedIn,
+  isReloading,
 });
 export const contactsReducer = combineReducers({
   items,
   isLoading,
-  error,
+  // error,
   filter,
 });
