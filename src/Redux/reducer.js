@@ -24,7 +24,7 @@ const user = createReducer(
     [register.fulfilled]: (_, { payload }) => payload.user,
     [login.fulfilled]: (_, { payload }) => payload.user,
     [logout.fulfilled]: () => null,
-    [getCurrentUserThunk.fulfilled]: (_, { payload }) => payload.user,
+    [getCurrentUserThunk.fulfilled]: (_, { payload }) => payload,
   }
 );
 const token = createReducer(null, {

@@ -13,22 +13,18 @@ export function UserMenu() {
     <div className={s.container}>
       <TextField
         value={email}
-        // onChange={e => setEmail(e.currentTarget.value)}
         className={s.input}
-        // required
-        // error
         id="outlined-email"
         label="Email"
         type="email"
         name="email"
-        // autoComplete="current-email"
-        // helperText="Incorrect value"
       />
       <Button
         type="button"
         className={s.button}
         variant="contained"
         onClick={handleLogout}
+        sx={{ marginTop: 2 }}
       >
         Logout
       </Button>
