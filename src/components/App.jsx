@@ -29,7 +29,7 @@ function App() {
     !isReloading && (
       <div
         style={{
-          height: '100vh',
+          // height: '100vh',
           display: 'flex',
           position: 'relative',
           flexDirection: 'column',
@@ -39,7 +39,8 @@ function App() {
           color: '#010101',
           padding: '20px',
           backgroundImage: `url(${process.env.PUBLIC_URL}/bgr.webp)`,
-          backgroundSize: 'contain',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'repeat',
         }}
       >
         {errorMessage && <h1 className={s.title}>{errorMessage}</h1>}
